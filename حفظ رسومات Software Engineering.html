@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حفظ رسومات Software Engineering</title>
+<style>
+:root{--bg:#f3f6f4;--card:#fff;--ink:#16211d;--mut:#5d6b65;--line:#cfd9d4;--acc:#0f6b57;--accbg:#d9efe8;--ok:#1b8a4b;--bad:#c0392b;--hid:#e6ece9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1714;--card:#18241f;--ink:#e6efeb;--mut:#93a69d;--line:#2c3d36;--acc:#4fd1b0;--accbg:#173a31;--ok:#4ade80;--bad:#f87171;--hid:#22332c}}
+:root[data-theme="dark"]{--bg:#0f1714;--card:#18241f;--ink:#e6efeb;--mut:#93a69d;--line:#2c3d36;--acc:#4fd1b0;--accbg:#173a31;--ok:#4ade80;--bad:#f87171;--hid:#22332c}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Tahoma,"Noto Sans Arabic",system-ui,sans-serif;line-height:1.6}
+body{max-width:860px;margin:0 auto;padding:14px 14px 40px}
+h1{font-size:1.25rem;margin:4px 0 2px}
+.sub{color:var(--mut);font-size:.88rem;margin:0 0 12px}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+button{font:inherit;color:inherit;cursor:pointer;border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:8px 12px}
+button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.tabs button.on,.chip.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+:root[data-theme="dark"] .tabs button.on,:root[data-theme="dark"] .chip.on{color:#07261d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tabs button.on,:root:not([data-theme="light"]) .chip.on{color:#07261d}}
+.sel{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px}
+.chip{white-space:nowrap;font-size:.85rem;padding:6px 11px;border-radius:99px;direction:ltr}
+.panel{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:14px}
+.ttl{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.ttl b{font-size:1.1rem;direction:ltr}
+.hint{color:var(--mut);font-size:.85rem}
+.flow{direction:ltr;display:flex;flex-direction:column;align-items:center;gap:0;margin:12px 0}
+.node{width:min(100%,440px);border:2px solid var(--acc);background:var(--accbg);border-radius:12px;padding:9px 12px;text-align:center;font-weight:600;position:relative}
+.node small{display:block;font-weight:400;color:var(--mut);font-size:.8rem}
+.node.hid{background:var(--hid);border-style:dashed;color:transparent;cursor:pointer;user-select:none}
+.node.hid small{color:transparent}
+.node.hid::after{content:"؟ اضغط للإظهار";color:var(--mut);position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:400;font-size:.85rem}
+.arr{color:var(--acc);font-size:1.3rem;line-height:1.1;height:22px}
+.loop{direction:ltr;font-size:.82rem;color:var(--mut);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;margin-top:6px;text-align:center}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;font-size:.9rem}
+.pc div{border-radius:10px;padding:8px 10px;direction:ltr}
+.pro{background:color-mix(in srgb,var(--ok) 14%,transparent)}.con{background:color-mix(in srgb,var(--bad) 14%,transparent)}
+.pc ul{margin:4px 0 0;padding-left:18px}
+@media(max-width:520px){.pc{grid-template-columns:1fr}}
+.pool{direction:ltr;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0}
+.pool button{border-color:var(--acc);font-weight:600}
+.slot{direction:ltr;width:min(100%,440px);min-height:40px;border:2px dashed var(--line);border-radius:12px;padding:8px 12px;text-align:center;color:var(--mut)}
+.slot.f{border:2px solid var(--ok);color:var(--ink);background:color-mix(in srgb,var(--ok) 12%,transparent);font-weight:600}
+.shake{animation:sh .3s}
+@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+@media(prefers-reduced-motion:reduce){.shake{animation:none;outline:3px solid var(--bad)}}
+.q{font-size:1.02rem;margin:8px 0;direction:ltr;text-align:left}
+.opts{direction:ltr;display:grid;gap:8px}
+.opts button{text-align:left}
+.opts .r{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,transparent)}
+.opts .w{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 18%,transparent)}
+.bar{display:flex;justify-content:space-between;margin-top:10px;gap:8px;align-items:center}
+.pri{background:var(--acc);color:#fff;border-color:var(--acc)}
+:root[data-theme="dark"] .pri{color:#07261d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pri{color:#07261d}}
+.sc{overflow-x:auto;margin:8px 0}
+svg.dg{min-width:760px;width:100%;height:auto;display:block;direction:ltr}
+svg text{fill:var(--ink);font-size:16px;font-family:Segoe UI,Tahoma,system-ui,sans-serif;text-anchor:middle}
+svg .sb{font-size:12.5px;fill:var(--mut)}
+.nd{fill:var(--accbg);stroke:var(--acc);stroke-width:2}
+.nd.h{fill:var(--hid);stroke:var(--line);stroke-dasharray:5 4}
+.nd.t{stroke:var(--acc);stroke-width:4;stroke-dasharray:none}
+g.hd{cursor:pointer}
+.ed{fill:none;stroke:var(--acc);stroke-width:2}
+.dc{fill:var(--hid);opacity:.55}
+.dl{fill:none;stroke:var(--line);stroke-width:1.5}
+marker path{fill:var(--acc)}
+</style>
+</head>
+<body>
+<h1>حفظ رسومات Software Engineering</h1>
+<p class="sub">12 رسم بنفس الأشكال والأسهم زي المحاضرة: ذاكر، جرّب تفتكر، كمّل الرسم، واختبر نفسك.</p>
+<div class="tabs" role="tablist">
+<button data-m="study" class="on">مذاكرة</button>
+<button data-m="recall">تذكّر</button>
+<button data-m="order">ترتيب</button>
+<button data-m="quiz">اختبار</button>
+</div>
+<div class="sel" id="sel"></div>
+<div class="panel" id="main"></div>
+
+<script>
+var P="p",R="r";
+function N(l,x,y,w,h,t,s){return{l:l,x:x,y:y,w:w,h:h,t:t,s:s}}
+var D=[
+{t:"Waterfall model",vb:"0 0 900 410",
+ n:[N("Requirements definition",20,10,200,54,R),N("System and software design",170,90,200,54,R),N("Implementation and unit testing",320,170,200,54,R),N("Integration and system testing",470,250,200,54,R),N("Operation and maintenance",620,330,200,54,R)],
+ e:["M220 37H270V90","M370 117H420V170","M520 197H570V250","M670 277H720V330","M620 357H60V64","M210 357V144","M360 357V224","M510 357V304"],
+ note:"الأسهم لتحت = التقدم، والأسهم لفوق = feedback لأي مرحلة قبلها.",
+ pro:["Easy to understand and plan","Works for well-understood small projects","Analysis and testing are straightforward"],con:["Does not accommodate change well","Testing occurs late","Customer approval is at the end"]},
+{t:"Waterfall (Pressman)",vb:"0 0 900 410",
+ n:[N("Communication",20,10,210,64,R,"project initiation, requirements gathering"),N("Planning",170,90,210,64,R,"estimating, scheduling, tracking"),N("Modeling",320,170,210,64,R,"analysis, design"),N("Construction",470,250,210,64,R,"code, test"),N("Deployment",620,330,210,64,R,"delivery, support, feedback")],
+ e:["M230 42H275V90","M380 122H425V170","M530 202H575V250","M680 282H725V330"],note:"نفس الـ 5 framework activities."},
+{t:"Evolutionary development",vb:"0 0 900 370",
+ n:[N("Outline description",20,170,150,60,R),N("Specification",260,80,180,56,P),N("Development",260,180,180,56,P),N("Validation",260,280,180,56,P),N("Initial version",630,70,170,56,R),N("Intermediate versions",630,175,170,56,R),N("Final version",630,285,170,56,R)],
+ dc:[["r",225,60,250,300],["r",595,50,250,310],["t",350,45,"Concurrent activities"]],
+ e:["M170 200H260","M335 136V180","M365 180V136","M335 236V280","M365 280V236","M440 98H630","M630 118H440","M440 198H630","M630 218H440","M440 308H630"],
+ note:"الـ 3 activities بتشتغل Concurrent، وفي أسهم رايح جاي مع الإصدارات."},
+{t:"Prototyping model",vb:"0 0 900 380",
+ n:[N("Communication",60,40,200,56,R),N("Quick plan",380,40,200,56,R),N("Modeling",640,170,200,56,R,"Quick design"),N("Construction of prototype",380,300,200,56,R),N("Deployment",60,300,200,56,R,"Delivery & feedback")],
+ e:["M260 68H380","M580 68H740V170","M740 226V328H580","M380 328H260","M160 300V96"],note:"دايرة: بعد Deployment بيرجع لـ Communication.",
+ pro:["Reduced impact of requirement changes","Customer involved early and often","Small-to-medium projects","Reduced likelihood of product rejection"],con:["Customer involvement may cause delays","Work lost in throwaway prototype","Hard to plan and manage"]},
+{t:"Incremental development",vb:"0 0 960 340",
+ n:[N("Define outline requirements",20,20,200,60,P),N("Assign requirements to increments",260,20,200,60,P),N("Design system architecture",500,20,200,60,P),N("Develop system increment",20,170,170,60,P),N("Validate increment",220,170,170,60,P),N("Integrate increment",420,170,170,60,P),N("Validate system",620,170,170,60,P),N("Final system",830,170,110,60,R)],
+ dc:[["t",410,318,"System incomplete"]],
+ e:["M220 50H260","M460 50H500","M600 80V125H105V170","M190 200H220","M390 200H420","M590 200H620","M790 200H830","M705 230V290H105V230"],
+ note:"لو System incomplete بيرجع لـ Develop system increment، ولو كامل بيطلع Final system."},
+{t:"Spiral model",vb:"0 0 900 420",
+ n:[N("Communication",20,290,190,50,R),N("Planning",20,15,250,70,R,"estimation, scheduling, risk analysis"),N("Modeling",670,15,200,64,R,"analysis, design"),N("Construction",700,200,170,64,R,"code, test"),N("Deployment",420,345,200,64,R,"delivery, feedback")],
+ dc:[["e",450,210,70,40],["e",450,210,130,75],["e",450,210,190,110],["e",450,210,250,145],["l",450,210,420,5],["l",450,210,10,170],["l",450,210,880,60],["l",450,210,800,400],["t",450,216,"start"]],
+ e:["M440 226L360 340"],note:"لفّات من المركز لبره، وفي Risk analysis جوه Planning.",
+ pro:["Continuous customer involvement","Development risks are managed","Large, complex projects","Extensible products"],con:["Risk analysis failures can doom the project","Hard to manage","Requires expert team"]},
+{t:"Requirements engineering",vb:"0 0 900 400",
+ n:[N("Feasibility study",20,20,170,70,P),N("Feasibility report",35,170,140,60,R),N("Requirements elicitation and analysis",260,20,200,80,P),N("System models",270,200,180,60,R),N("Requirements specification",500,120,200,70,P),N("User and system requirements",510,250,190,64,R),N("Requirements validation",720,210,170,70,P),N("Requirements document",720,330,170,60,R)],
+ ch:[[0,2],[2,4],[4,6],[6,7],[0,1],[2,3],[4,5]],
+ e:["M105 90V170","M190 55H260","M360 100V200","M460 80H480V155H500","M600 120V70H460","M700 155H710V245H720","M805 210V95H640V120","M600 190V250","M700 282H760V330","M805 280V330","M360 260V360H720"],note:"System models و User and system requirements بيدخلوا في Requirements document."},
+{t:"Software design process",vb:"0 0 900 340",ch:null,n:[],e:[],note:"فوق: Design activities، وتحت: Design products."},
+{t:"Debugging process",vb:"0 0 900 110",
+ n:[N("Locate error",20,20,170,70,P),N("Design error repair",250,20,170,70,P),N("Repair error",480,20,170,70,P),N("Re-test program",710,20,170,70,P)],
+ e:["M190 55H250","M420 55H480","M650 55H710"],note:"4 خطوات بس."},
+{t:"Testing process",vb:"0 0 900 230",
+ n:[N("Component testing",20,80,180,70,P),N("System testing",360,80,180,70,P),N("Acceptance testing",700,80,180,70,P)],
+ e:["M110 80V35H400V80","M500 80V35H790V80","M790 150V200H500V150","M400 150V200H110V150"],note:"أسهم رجوع من System لـ Component ومن Acceptance لـ System."},
+{t:"Testing phases",vb:"0 0 900 320",
+ n:[N("Requirements specification",10,10,160,56,P),N("System specification",200,10,160,56,P),N("System design",390,10,160,56,P),N("Detailed design",580,10,160,56,P),N("Module and unit code and test",750,110,140,80,P),N("Acceptance test plan",150,110,150,70,R),N("System integration test plan",360,110,150,70,R),N("Sub-system integration test plan",570,110,150,70,R),N("Sub-system integration test",570,230,150,70,P),N("System integration test",360,230,150,70,P),N("Acceptance test",150,230,150,70,P),N("Service",10,230,100,70,P)],
+ ch:[[0,1],[1,2],[2,3],[3,4],[4,8],[8,9],[9,10],[10,11],[0,5],[1,6],[5,10],[6,9],[7,8]],
+ e:["M170 38H200","M360 38H390","M550 38H580","M90 66L200 110","M260 66L230 110","M300 66L400 110","M450 66V110","M500 66L600 110","M640 66L660 110","M720 66L800 110","M225 180V230","M435 180V230","M645 180V230","M820 190L690 230","M570 265H510","M360 265H300","M150 265H110"],note:"فوق بتتعمل Test plans، وتحت بتتنفذ من اليمين لليسار لحد Service."},
+{t:"System evolution",vb:"0 0 900 330",
+ n:[N("Define system requirements",20,100,170,70,P),N("Assess existing systems",250,100,170,70,P),N("Propose system changes",480,100,170,70,P),N("Modify systems",710,100,170,70,P),N("Existing systems",240,230,130,60,R),N("New system",710,230,130,60,R)],
+ ch:[[0,1],[1,2],[2,3],[4,1],[5,1]],
+ e:["M190 135H250","M420 135H480","M650 135H710","M795 100V40H105V100","M300 230V170","M710 260H360V170"],note:"Modify systems بيرجع لـ Define system requirements (loop)."}
+];
+(function(){var d=D[7],X=[10,160,310,460,610,760],A=["Architectural design","Abstract specification","Interface design","Component design","Data structure design","Algorithm design"],B=["System architecture","Software specification","Interface specification","Component specification","Data structure specification","Algorithm specification"];
+ d.n.push(N("Requirements specification",330,10,190,56,P));d.e.push("M400 66L75 110","M450 66L225 110");
+ for(var i=0;i<6;i++){d.n.push(N(A[i],X[i],110,130,70,P));d.n.push(N(B[i],X[i],240,130,70,R));d.e.push("M"+(X[i]+65)+" 180V240");if(i<5){d.e.push("M"+(X[i]+130)+" 145H"+X[i+1]);d.e.push("M"+(X[i]+105)+" 240L"+(X[i+1]+25)+" 180")}}
+ d.dc=[["t",450,95,""]]})();
+var mode="study",cur=0,shown={},ord=null,quiz=null,score=0,tot=0;
+var sel=document.getElementById("sel"),main=document.getElementById("main");
+function el(h){var d=document.createElement("div");d.innerHTML=h;return d.firstChild}
+function esc(s){return String(s).replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c]})}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function pairs(d){return d.ch||d.n.slice(1).map(function(_,i){return[i,i+1]})}
+function wrap(t,m){var w=t.split(" "),L=[],c="";w.forEach(function(x){if((c+" "+x).trim().length>m&&c){L.push(c);c=x}else c=(c+" "+x).trim()});L.push(c);return L}
+function svg(d,st){var h='<div class="sc"><svg class="dg" viewBox="'+d.vb+'" role="img" aria-label="'+esc(d.t)+'"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z"/></marker></defs>';
+ (d.dc||[]).forEach(function(c){if(c[0]==="r")h+='<rect class="dc" x="'+c[1]+'" y="'+c[2]+'" width="'+c[3]+'" height="'+c[4]+'" rx="8"/>';else if(c[0]==="t")h+='<text x="'+c[1]+'" y="'+c[2]+'" class="sb">'+esc(c[3])+"</text>";else if(c[0]==="e")h+='<ellipse class="dl" cx="'+c[1]+'" cy="'+c[2]+'" rx="'+c[3]+'" ry="'+c[4]+'"/>';else h+='<line class="dl" x1="'+c[1]+'" y1="'+c[2]+'" x2="'+c[3]+'" y2="'+c[4]+'"/>'});
+ d.e.forEach(function(p){h+='<path class="ed" d="'+p+'" marker-end="url(#ah)"/>'});
+ d.n.forEach(function(n,i){var hid=st.hide&&!st.sh(i),cl="nd"+(hid?" h":"")+(st.tg===i?" t":"");
+  h+='<g class="'+(hid&&st.click?"hd":"")+'" data-i="'+i+'"'+(hid&&st.click?' tabindex="0" role="button" aria-label="اظهر الخطوة"':"")+'><rect class="'+cl+'" x="'+n.x+'" y="'+n.y+'" width="'+n.w+'" height="'+n.h+'" rx="'+(n.t===P?n.h/2:7)+'"/>';
+  if(hid)h+='<text x="'+(n.x+n.w/2)+'" y="'+(n.y+n.h/2+6)+'" class="sb">؟</text>';
+  else{var L=wrap(n.l,Math.floor(n.w/9)),S=n.s?wrap(n.s,Math.floor(n.w/7)):[],tot=L.length+S.length,y=n.y+n.h/2-(tot-1)*9+5;
+   L.forEach(function(l){h+='<text x="'+(n.x+n.w/2)+'" y="'+y+'">'+esc(l)+"</text>";y+=19});S.forEach(function(l){h+='<text class="sb" x="'+(n.x+n.w/2)+'" y="'+y+'">'+esc(l)+"</text>";y+=16})}
+  h+="</g>"});
+ return h+"</svg></div>"}
+function head(d,x){return'<div class="ttl"><b>'+esc(d.t)+'</b><span class="hint">'+x+"</span></div>"}
+function buildSel(){sel.innerHTML="";D.forEach(function(d,i){var b=el('<button class="chip'+(i===cur?" on":"")+'">'+(i+1)+". "+esc(d.t)+"</button>");b.onclick=function(){cur=i;shown={};quiz=null;ord=null;buildSel();render()};sel.appendChild(b)})}
+document.querySelectorAll(".tabs button").forEach(function(b){b.onclick=function(){mode=b.dataset.m;shown={};quiz=null;ord=null;document.querySelectorAll(".tabs button").forEach(function(x){x.classList.toggle("on",x===b)});render()}});
+function render(){var d=D[cur];
+ if(mode==="study"){main.innerHTML=head(d,"اتفرج على الرسم كويس")+svg(d,{sh:function(){return 1}})+'<div class="loop" style="direction:rtl">'+esc(d.note)+"</div>"+(d.pro?'<div class="pc"><div class="pro"><b>Pros</b><ul>'+d.pro.map(function(x){return"<li>"+esc(x)+"</li>"}).join("")+'</ul></div><div class="con"><b>Cons</b><ul>'+d.con.map(function(x){return"<li>"+esc(x)+"</li>"}).join("")+"</ul></div></div>":"")}
+ else if(mode==="recall"){main.innerHTML=head(d,"اضغط على المربع بعد ما تفتكر محتواه")+svg(d,{hide:1,click:1,sh:function(i){return shown[i]}})+'<div class="bar"><button id="ra">أظهر الكل</button><button id="rh">اخفي الكل</button></div>';
+  main.querySelectorAll("g.hd").forEach(function(g){g.onclick=function(){shown[g.dataset.i]=1;render()};g.onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();g.click()}}});
+  document.getElementById("ra").onclick=function(){d.n.forEach(function(_,i){shown[i]=1});render()};document.getElementById("rh").onclick=function(){shown={};render()}}
+ else if(mode==="order")order(d);else quizR()}
+function order(d){if(!ord||ord.c!==cur)ord={c:cur,k:0,p:shuf(d.n.map(function(_,i){return i}))};
+ var done=ord.k>=d.n.length;
+ var h=head(d,done?"خلصت":"الخطوة المظللة هي المطلوبة، اختار اسمها ("+(ord.k+1)+" من "+d.n.length+")")+svg(d,{hide:1,sh:function(i){return i<ord.k},tg:done?-1:ord.k});
+ if(done)h+='<p style="text-align:center;color:var(--ok);font-weight:700">ممتاز! كملت الرسم صح.</p><div class="bar"><button class="pri" id="again">ابدأ تاني</button></div>';
+ else{h+='<div class="pool">';ord.p.forEach(function(i){if(i>=ord.k)h+='<button data-i="'+i+'">'+esc(d.n[i].l)+"</button>"});h+="</div>"}
+ main.innerHTML=h;
+ main.querySelectorAll(".pool button").forEach(function(b){b.onclick=function(){if(+b.dataset.i===ord.k){ord.p=ord.p.filter(function(x){return x!==ord.k});ord.k++;order(d)}else{b.classList.remove("shake");void b.offsetWidth;b.classList.add("shake")}}});
+ var a=document.getElementById("again");if(a)a.onclick=function(){ord=null;order(d)}}
+function mkQ(){var d=D[cur],P2=pairs(d),f=P2[Math.floor(Math.random()*P2.length)][0],ok=P2.filter(function(p){return p[0]===f}).map(function(p){return d.n[p[1]].l}),pool=[];
+ d.n.forEach(function(n){if(n.l!==d.n[f].l&&ok.indexOf(n.l)<0)pool.push(n.l)});
+ if(pool.length<3)D.forEach(function(x){x.n.forEach(function(n){if(ok.indexOf(n.l)<0&&pool.indexOf(n.l)<0&&n.l!==d.n[f].l)pool.push(n.l)})});
+ var a=ok[0],o=shuf(pool).slice(0,3);o.push(a);quiz={q:"في "+d.t+": إيه اللي بييجي بعد «"+d.n[f].l+"»؟",a:ok,o:shuf(o),done:false}}
+function quizR(){if(!quiz)mkQ();var d=D[cur];
+ main.innerHTML=head(d,"النتيجة: "+score+" / "+tot)+'<div class="q" dir="auto">'+esc(quiz.q)+'</div><div class="opts">'+quiz.o.map(function(x){return"<button>"+esc(x)+"</button>"}).join("")+'</div><div class="bar"><span></span><button class="pri" id="nx" style="visibility:hidden">السؤال اللي بعده</button></div>';
+ main.querySelectorAll(".opts button").forEach(function(b){b.onclick=function(){if(quiz.done)return;quiz.done=true;tot++;var ok=quiz.a.indexOf(b.textContent)>=0;if(ok)score++;
+  main.querySelectorAll(".opts button").forEach(function(x){if(quiz.a.indexOf(x.textContent)>=0)x.classList.add("r");else if(x===b)x.classList.add("w")});
+  main.querySelector(".hint").textContent="النتيجة: "+score+" / "+tot;var n=document.getElementById("nx");n.style.visibility="visible";n.onclick=function(){quiz=null;quizR()}}})}
+buildSel();render();
+</script>
+</body>
+</html>
